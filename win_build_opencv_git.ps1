@@ -4,12 +4,16 @@ if (-not(Test-Path -path "c:\opencv\build")) {
   mkdir -p C:\opencv\build
 }
 
-echo "Downloading OpenCV sources \n\n For monitoring the download progress please check the C:\opencv directory."
+echo "Downloading OpenCV sources" "" "For monitoring the download progress please check the C:\opencv directory."
 
 cd C:\opencv
 git clone https://github.com/opencv/opencv.git
 git clone https://github.com/opencv/opencv_contrib.git
 
+echo "Patching..."
+# we need the old version numbers
+cd C:\opencv\opencv
+git revert d744296 -m 2 --no-edit
 $env:PATH = 'C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files\Go\bin;C:\ProgramData\chocolatey\bin;C:\ProgramData\mingw64\mingw64\bin;C:\Program Files\CMake\bin;'
 
 cd C:\opencv\build
