@@ -22,6 +22,5 @@ cmake C:\opencv\opencv -G "MinGW Makefiles" -BC:\opencv\build -DENABLE_CXX11=ON 
 mingw32-make -j $env:NUMBER_OF_PROCESSORS
 mingw32-make install
 
-cd $env:GOPATH/pkg/mod/gocv.io/x/gocv@v0.41.0
-
+cd $PSScriptRoot
 go run ./cmd/version/main.go
