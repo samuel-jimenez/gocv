@@ -14,8 +14,24 @@ if (-not(Test-Path -path "c:\opencv\build")) {
 echo "Downloading OpenCV sources" "" "For monitoring the download progress please check the C:\opencv directory."
 
 cd C:\opencv
-git clone https://github.com/opencv/opencv.git
-git clone https://github.com/opencv/opencv_contrib.git
+if (-not(Test-Path -path "c:\opencv\opencv")) {
+  git clone https://github.com/opencv/opencv.git
+}
+else {
+  cd opencv
+  git reset --hard origin/HEAD
+  git pull
+  cd ..
+}
+if (-not(Test-Path -path "c:\opencv\opencv_contrib")) {
+  git clone https://github.com/opencv/opencv_contrib.git
+}
+else {
+  cd opencv
+  git reset --hard origin/HEAD
+  git pull
+  cd ..
+}
 
 echo "Patching..."
 # we need the old version numbers
